@@ -13,6 +13,9 @@ import picocli.CommandLine.Spec;
 
 /**
  * ClassDividerCLI – Divide a class of students into groups.
+ * 
+ * This CLI tool takes a CSV file with student data and divides the students
+ * into groups of a specified size, allowing for a specified deviation.
  *
  * @version 0.7
  */
@@ -23,6 +26,10 @@ import picocli.CommandLine.Spec;
         description = "Divide a class of students into groups.")
 public class ClassDividerCLI implements Callable<Integer> {
 
+    /**
+     * The target group size.
+     * This option is required.
+     */
     @CommandLine.Option(
             names = {"-g", "--group-size"},
             description = "target group size.",
@@ -30,12 +37,20 @@ public class ClassDividerCLI implements Callable<Integer> {
     )
     private int groupSize;
 
+    /**
+     * The permitted difference between the number of students in a group and the target group size.
+     * Defaults to 1.
+     */
     @CommandLine.Option(
             names = {"-d", "--deviation"},
             description = "permitted difference of number of students in a group "
             + " and the target group size. Defaults to ${DEFAULT-VALUE}.")
     public int deviation = 1;
 
+    /**
+     * The path to the file with students data in CSV format.
+     * This parameter is required.
+     */
     @Parameters(
             index = "0",
             description = "path to file with students data in CSV format."
@@ -48,6 +63,10 @@ public class ClassDividerCLI implements Callable<Integer> {
     private Group<Student> klas;
     private final Map<String, Boolean> uniqueFirstName = new HashMap<>();
 
+    /**
+     * Checks for valid group size and deviation.
+     * Throws a ParameterException if the conditions are not met.
+     */
     private void exceptionCheck() {
         if (groupSize <= 0) {
             throw new ParameterException(commandSpec.commandLine(),
@@ -59,7 +78,11 @@ public class ClassDividerCLI implements Callable<Integer> {
                     "deviation must be a positive number smaller than group size.");
         }
     }
-
+    
+    /**
+     * Validates the input CSV file and initializes the student group.
+     * Throws a ParameterException if the file cannot be read or parsed.
+     */
     private void validate() {
         try {
             klas = StudentsFile.fromCSV(studentsFile);
@@ -70,7 +93,11 @@ public class ClassDividerCLI implements Callable<Integer> {
         }
         exceptionCheck();
     }
-
+    
+    /**
+     * Prints the groups of students.
+     * @param groupSet List of student groups to print
+     */
     private void print(List<Group<Student>> groupSet) {
         int groupNr = 0;
 
@@ -93,6 +120,12 @@ public class ClassDividerCLI implements Callable<Integer> {
         }
     }
 
+    /**
+    * The main execution method of the CLI.
+    * Validates inputs, divides the class into groups, and prints the groups.
+    *
+    * @return Exit code, 0 if successful.
+    */
     @Override
     public Integer call() {
         validate();

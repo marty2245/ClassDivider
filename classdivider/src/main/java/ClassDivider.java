@@ -4,9 +4,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * .
+ * ClassDivider – Divides a group of students into smaller groups based on specified parameters.
+ * 
+ * This class is responsible for dividing a list of students into groups of a specified size
+ * while considering a permissible deviation in the group sizes.
+ * @pre recieves correct input, thus validate() must handle exceptions with incorrect input
+ * @post returns correct groups to print(), 
+ *      thus must handle exceptions when the division is impossible
  */
-
 public class ClassDivider {
     private int groupSize;
     private int deviation;
@@ -18,7 +23,13 @@ public class ClassDivider {
     private Map<String, Boolean> uniqueFirstName;
 
     /**
-     * .
+     * Constructs a new ClassDivider with the specified group size, deviation, 
+     * list of students, and a map for tracking unique first names.
+     *
+     * @param groupSize the target size of each group
+     * @param deviation the permissible deviation in group sizes
+     * @param klas the list of students to be divided into groups
+     * @param uniqueFirstName a map to track the uniqueness of first names
      */
     public ClassDivider(int groupSize, int deviation,
             Group<Student> klas, Map<String, Boolean> uniqueFirstName) {
@@ -42,14 +53,18 @@ public class ClassDivider {
     }
     
     /**
-     * .
+     * Divides the class of students into groups based on the specified group size and deviation.
+     * 
+     * This method first checks if the division conditions are met and then proceeds to divide
+     * the students into groups. It also updates the map tracking the uniqueness of first names.
+     * 
+     * @throws IllegalArgumentException if the conditions for dividing the class are not met
      */
     public void divide() {
         if (conditions()) {
             throw new IllegalArgumentException(
                     "Unable to divide the class into groups with the specified parameters.");
         }
-
         grouping();
 
         if (nrOfGroups / deviation > overflow) {
@@ -68,8 +83,8 @@ public class ClassDivider {
     }
     
     /**
-     * .
-     */
+    * Groups students into the initial sets based on the specified group size.
+    */
     public void grouping() {
         for (int g = 0; g < nrOfGroups; g++) {
             Group<Student> group = new Group<>();
@@ -83,7 +98,8 @@ public class ClassDivider {
     }
 
     /**
-     * .
+     * Distributes the overflow students 
+     * among the initial groups if the deviation conditions are met.
      */
     public void ifMethod() {
         for (int d = 0; d < deviation && overflow > 0; d++) {
@@ -96,7 +112,7 @@ public class ClassDivider {
     }
 
     /**
-     * .
+     * Creates a separate group for the overflow students if the deviation conditions are not met.
      */
     public void elseMethod() {
         Group<Student> separateGroup = new Group<>();
@@ -118,6 +134,11 @@ public class ClassDivider {
         groupSet.add(separateGroup);
     }
 
+    /**
+     * Returns the list of student groups after the division.
+     * 
+     * @return a list of groups of students
+     */
     public List<Group<Student>> getGroupSet() {
         return groupSet;
     }
