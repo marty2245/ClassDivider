@@ -2,15 +2,17 @@
  * Student.
  *
  * @see
- * <a href="https://shinesolutions.com/2018/01/08/falsehoods-programmers-believe-about-names-with-examples/">This
- * page about potential issues with names</a> that we ignore in this Student record. We modeled
- * student names from a Dutch perspective.
+ *      <a href=
+ *      "https://shinesolutions.com/2018/01/08/falsehoods-programmers-believe-about-names-with-examples/">This
+ *      page about potential issues with names</a> that we ignore in this
+ *      Student record. We modeled
+ *      student names from a Dutch perspective.
  *
  * @author Huub de Beer
  * 
  * @param firstName student's first name
- * @param lastName student's last name
- * @param id student's ID
+ * @param lastName  student's last name
+ * @param id        student's ID
  */
 public record Student(String firstName, String lastName, String id) {
 
@@ -23,9 +25,9 @@ public record Student(String firstName, String lastName, String id) {
      * Examples:
      *
      * <ul>
-     * <li> Beer, Huub de
-     * <li> Jansens, Jan
-     * <li> Borne, Lisa van der
+     * <li>Beer, Huub de
+     * <li>Jansens, Jan
+     * <li>Borne, Lisa van der
      * </ul>
      *
      * @pre true

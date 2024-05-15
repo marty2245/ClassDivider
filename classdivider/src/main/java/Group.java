@@ -125,9 +125,9 @@ public class Group<T> implements Set<T> {
         @Override
         public T next() {
             List<T> candidates = members
-                .stream()
-                .filter(s -> !alreadyPicked.contains(s))
-                .toList();
+                    .stream()
+                    .filter(s -> !alreadyPicked.contains(s))
+                    .toList();
 
             T pick = candidates.get(RNG.nextInt(0, candidates.size()));
             alreadyPicked.add(pick);
@@ -203,10 +203,11 @@ public class Group<T> implements Set<T> {
      *
      * @pre {@code true}
      * @param member the member to remove from this group
-     * @post <ul>
-     * <li>{@code this == \old(this) - {member}}</li>
-     * <li>{@code \result == \old{this}.contains(member)}</li>
-     * </ul>
+     * @post
+     *       <ul>
+     *       <li>{@code this == \old(this) - {member}}</li>
+     *       <li>{@code \result == \old{this}.contains(member)}</li>
+     *       </ul>
      * @return true if removed member was in this group, false otherwise
      */
     @Override
@@ -219,10 +220,11 @@ public class Group<T> implements Set<T> {
      *
      * @pre {@code true}
      * @param members the members to remove from this group
-     * @post <ul>
-     * <li>{@code this == \old(this) - members}</li>
-     * <li>{@code \result == (\old{this} != this)}</li>
-     * </ul>
+     * @post
+     *       <ul>
+     *       <li>{@code this == \old(this) - members}</li>
+     *       <li>{@code \result == (\old{this} != this)}</li>
+     *       </ul>
      * @return true if group changed, false otherwise
      */
     @Override
@@ -235,10 +237,11 @@ public class Group<T> implements Set<T> {
      *
      * @pre {@code true}
      * @param members the members to retain in this group
-     * @post <ul>
-     * <li>{@code this == \old(this) intersect members}</li>
-     * <li>{@code \result == (\old(this) != this)}</li>
-     * </ul>
+     * @post
+     *       <ul>
+     *       <li>{@code this == \old(this) intersect members}</li>
+     *       <li>{@code \result == (\old(this) != this)}</li>
+     *       </ul>
      * @return true if group changed, false otherwise
      */
     @Override
@@ -250,11 +253,13 @@ public class Group<T> implements Set<T> {
      * Convert this group to an array.
      *
      * @pre {@code true}
-     * @post <ul>
-     * <li>{@code (\forall i; \result.has(i); this.contains(\result[i]))}</li>
-     * <li>{@code (\forall m; this.contains(m); (\exists i; \result.has(i); \result[i] == m))}</li>
-     * <li>{@code (\forall m; this.contains(m); m instanceof Object)}</li>
-     * </ul>
+     * @post
+     *       <ul>
+     *       <li>{@code (\forall i; \result.has(i); this.contains(\result[i]))}</li>
+     *       <li>{@code (\forall m; this.contains(m); 
+     *       (\exists i; \result.has(i); \result[i] == m))}</li>
+     *       <li>{@code (\forall m; this.contains(m); m instanceof Object)}</li>
+     *       </ul>
      * @return an array of all members in this group
      */
     @Override
@@ -266,12 +271,14 @@ public class Group<T> implements Set<T> {
      * Convert this group to an array.
      *
      * @pre {@code true}
-     * @param <U> type of return array members
+     * @param <U>         type of return array members
      * @param memberArray array to return values in
-     * @post <ul>
-     * <li>{@code (\forall i; \result.has(i); this.contains(\result[i]))}</li>
-     * <li>{@code (\forall m; this.contains(m); (\exists i; \result.has(i); \result[i] == m))}</li>
-     * </ul>
+     * @post
+     *       <ul>
+     *       <li>{@code (\forall i; \result.has(i); this.contains(\result[i]))}</li>
+     *       <li>{@code (\forall m; this.contains(m); 
+     *       (\exists i; \result.has(i); \result[i] == m))}</li>
+     *       </ul>
      * @return an array of all members in this group
      */
     @Override
@@ -285,7 +292,8 @@ public class Group<T> implements Set<T> {
      * @pre {@code true}
      * @param other to compare with this group
      * @post {@code group.containsAll(this) && this.containsAll(group)}
-     * @return true if other is a group and contains exactly the same members, false otherwise.
+     * @return true if other is a group and contains exactly the same members, false
+     *         otherwise.
      */
     @Override
     public boolean equals(Object other) {
