@@ -6,7 +6,7 @@
 
     <groupId>nl.tue.classdivider</groupId>
     <artifactId>classdivider</artifactId>
-    <version>0.6</version>
+    <version>0.7</version>
 
     <properties>
         <maven.compiler.release>17</maven.compiler.release>

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * {@code Group} of things.
  *
  * A {@code Group} is a set.
- *
+ * 
  * @author Huub de Beer
  * @param <T> group member type
  */

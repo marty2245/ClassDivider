@@ -7,7 +7,7 @@
  * student names from a Dutch perspective.
  *
  * @author Huub de Beer
- *
+ * 
  * @param firstName student's first name
  * @param lastName student's last name
  * @param id student's ID
