@@ -13,14 +13,14 @@ import java.util.Map;
  *      thus must handle exceptions when the division is impossible
  */
 public class ClassDivider {
-    private int groupSize;
-    private int deviation;
-    private Group<Student> klas;
-    private int nrOfGroups;
-    private int overflow;
-    private Iterator<Student> students;
-    private List<Group<Student>> groupSet = new ArrayList<>();
-    private Map<String, Boolean> uniqueFirstName;
+    public int groupSize;
+    public int deviation;
+    public Group<Student> klas;
+    public int nrOfGroups;
+    public int overflow;
+    public Iterator<Student> students;
+    public List<Group<Student>> groupSet = new ArrayList<>();
+    public Map<String, Boolean> uniqueFirstName;
 
     /**
      * Constructs a new ClassDivider with the specified group size, deviation, 
