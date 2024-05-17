@@ -41,8 +41,11 @@ public class ClassDivider {
         this.students = klas.iterator();
         this.uniqueFirstName = uniqueFirstName;
     }
-
-    private boolean conditions() {
+    
+    /**
+    * Implementing the conditions.
+    */
+    public boolean conditions() {
         boolean overflowCheck = nrOfGroups / deviation > overflow;
         boolean deviationOverflowCheck = groupSize - deviation <= overflow
                 && overflow <= groupSize + deviation;
